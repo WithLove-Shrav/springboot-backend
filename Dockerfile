@@ -11,10 +11,14 @@ COPY . .
 RUN ./mvnw clean package || cat target/mvn-build.log
 
 # Copy the built JAR file into the container
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+COPY target/demo-0.0.1-SNAPSHOT app.jar
+
 
 # Expose the default Spring Boot port (8080)
 EXPOSE 8080
 
 # Run the application
 CMD ["java", "-jar", "app.jar"]
+
+
+
