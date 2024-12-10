@@ -1,14 +1,14 @@
 # Use an OpenJDK base image
 FROM openjdk:17-jdk-slim
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy Maven wrapper and project files
+# Copy all project files into the container
 COPY . .
 
-# Build the project
-RUN ./mvnw clean package
+# Build the JAR file
+RUN ./mvnw clean package || cat target/mvn-build.log
 
 # Copy the built JAR file into the container
 COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
